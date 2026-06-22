@@ -1,0 +1,1900 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>دکتر ستاره سالخورده</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script
+      src="https://kit.fontawesome.com/9e8b7b6d6d.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      :root {
+        --cyan: #4fe7eb;
+        --cyan2: #34cbd8;
+        --bg: #0d0f12;
+        --glass-bg: rgba(20, 23, 28, 0.55);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --card-bg: rgba(255, 255, 255, 0.22);
+        --card-border: rgba(255, 255, 255, 0.14);
+      }
+      * {
+        font-family: "Vazirmatn", sans-serif;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+      /* ── Glassmorphism ── */
+      .glass {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-radius: 20px;
+        transition:
+          border-color 0.25s,
+          transform 0.25s,
+          box-shadow 0.25s;
+      }
+      .card:hover {
+        border-color: rgba(79, 231, 235, 0.45);
+        transform: translateY(-5px);
+        box-shadow: 0 0 28px rgba(79, 231, 235, 0.13);
+      }
+
+      /* ── Buttons ── */
+      .btn-cyan {
+        background: linear-gradient(135deg, var(--cyan) 0%, var(--cyan2) 100%);
+        color: #0a0e12;
+        font-weight: 800;
+        border-radius: 14px;
+        box-shadow: 0 0 18px rgba(79, 231, 235, 0.35);
+        transition:
+          box-shadow 0.2s,
+          transform 0.2s;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-cyan:hover {
+        box-shadow: 0 0 30px rgba(79, 231, 235, 0.55);
+        transform: translateY(-1px);
+      }
+      .btn-ghost {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        color: #fff;
+        font-weight: 600;
+        border-radius: 14px;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+
+      /* ── Glow ring ── */
+      .glow-ring {
+        box-shadow:
+          0 0 0 1px rgba(79, 231, 235, 0.28),
+          0 0 40px rgba(79, 231, 235, 0.1);
+      }
+
+      /* ── Hero wrapper ── */
+      .hero-wrap {
+        position: relative;
+        border-radius: 26px;
+        overflow: hidden;
+        min-height: 94vh;
+      }
+
+      /* ═══════════════════════════════════════════════════
+       بک‌گراند دسکتاپ و موبایل — دو عکس جداگانه
+       ═══════════════════════════════════════════════════ */
+
+      /* ── عکس دسکتاپ (پیش‌فرض) ── */
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background: url("./8.png") center/cover no-repeat;
+      }
+
+      /* ── عکس موبایل (برای صفحه‌های کوچک‌تر از xl) ── */
+      @media (max-width: 1279px) {
+        .hero-bg {
+          background: url("./bghedfon.jpeg") center/cover no-repeat;
+        }
+      }
+
+      /* ── گرادیان‌های روی بک‌گراند ── */
+      .hero-bg-overlay-desktop {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          270deg,
+          rgba(10, 14, 18, 0.1) 0%,
+          rgba(10, 14, 18, 0.55) 60%,
+          rgba(10, 14, 18, 0.92) 100%
+        );
+      }
+      .hero-bg-overlay-mobile {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          180deg,
+          rgba(10, 14, 18, 0.45) 0%,
+          rgba(55, 63, 71, 0.55) 45%,
+          rgba(10, 14, 18, 0.94) 100%
+        );
+      }
+
+      /* ── Cyan accent bar ── */
+      .accent-bar {
+        width: 3px;
+        border-radius: 4px;
+        background: linear-gradient(180deg, var(--cyan), var(--cyan2));
+        flex-shrink: 0;
+      }
+
+      /* ── Nav link ── */
+      .nav-link {
+        color: rgba(255, 255, 255, 0.82);
+        transition: color 0.2s;
+        font-size: 15px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .nav-link:hover {
+        color: var(--cyan);
+      }
+
+      /* ── Service icon circle ── */
+      .svc-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: rgba(79, 231, 235, 0.1);
+        border: 1px solid rgba(79, 231, 235, 0.22);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 14px;
+        font-size: 22px;
+        color: var(--cyan);
+        flex-shrink: 0;
+      }
+
+      /* ── Arrow circle ── */
+      .arrow-circle {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 12px;
+        margin-top: auto;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .card:hover .arrow-circle {
+        border-color: var(--cyan);
+        color: var(--cyan);
+      }
+
+      /* ── Stat pill ── */
+      .stat-pill {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .stat-pill i {
+        color: var(--cyan);
+        font-size: 18px;
+      }
+      .stat-num {
+        font-weight: 800;
+        font-size: 20px;
+        line-height: 1;
+      }
+      .stat-lbl {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 2px;
+      }
+
+      /* ── Mobile fullscreen menu ── */
+      .mob-menu {
+        position: fixed;
+        inset: 0;
+        background: rgba(8, 10, 14, 0.97);
+        backdrop-filter: blur(24px);
+        z-index: 999;
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.05);
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+      .mob-menu.open {
+        transform: translateX(0);
+      }
+      .mob-menu-close {
+        position: absolute;
+        top: 1.1rem;
+        left: 1.1rem;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .mob-menu-close:hover {
+        background: rgba(79, 231, 235, 0.15);
+        border-color: var(--cyan);
+      }
+      .mob-nav-link {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+        text-align: right;
+        transition: color 0.2s;
+      }
+      .mob-nav-link:hover {
+        color: var(--cyan);
+      }
+
+      /* ── Mobile service mini-card ── */
+      .mob-svc {
+        background: rgba(22, 26, 32, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 14px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        transition:
+          border-color 0.22s,
+          transform 0.22s;
+      }
+      .mob-svc:hover {
+        border-color: rgba(79, 231, 235, 0.4);
+        transform: translateY(-3px);
+      }
+      .mob-svc i {
+        font-size: 22px;
+        color: var(--cyan);
+      }
+      .mob-svc span {
+        font-size: 12px;
+        font-weight: 700;
+        text-align: center;
+      }
+      .mob-svc small {
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.5);
+        text-align: center;
+        line-height: 1.4;
+      }
+
+      /* ── Desktop cards scroll row ── */
+      .cards-scroll-row {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(220px, 1fr));
+        gap: 1rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        padding-bottom: 8px;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(79, 231, 235, 0.35) rgba(255, 255, 255, 0.04);
+      }
+      .cards-scroll-row::-webkit-scrollbar {
+        height: 6px;
+      }
+      .cards-scroll-row::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 10px;
+      }
+      .cards-scroll-row::-webkit-scrollbar-thumb {
+        background: linear-gradient(90deg, var(--cyan), var(--cyan2));
+        border-radius: 10px;
+        opacity: 0.7;
+      }
+      .cards-scroll-row::-webkit-scrollbar-thumb:hover {
+        background: var(--cyan);
+      }
+
+      /* ═══════════════════════════════════════
+         فوتر — بک‌گراند مشکی مات
+         ═══════════════════════════════════════ */
+      .site-footer {
+        position: relative;
+        z-index: 10;
+        background: #0a0c0f;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin-top: 2rem;
+      }
+      .site-footer a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        transition: color 0.2s;
+        font-size: 14px;
+      }
+      .site-footer a:hover {
+        color: var(--cyan);
+      }
+      .footer-heading {
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 18px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+      .footer-heading::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 30px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--cyan), var(--cyan2));
+        border-radius: 2px;
+      }
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .footer-links a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .footer-links a::before {
+        content: "‹";
+        color: var(--cyan);
+        font-size: 14px;
+        opacity: 0;
+        transform: translateX(6px);
+        transition: all 0.25s;
+      }
+      .footer-links a:hover::before {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.7);
+        transition: all 0.25s;
+      }
+      .social-icon:hover {
+        background: rgba(79, 231, 235, 0.12);
+        border-color: var(--cyan);
+        color: var(--cyan);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(79, 231, 235, 0.2);
+      }
+      .footer-divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        margin: 30px 0 20px;
+      }
+      .footer-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .footer-bottom .dev-name {
+        color: var(--cyan);
+        font-weight: 600;
+      }
+
+      /* animations */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeRight {
+        from {
+          opacity: 0;
+          transform: translateX(22px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .anim-up {
+        animation: fadeUp 0.7s ease both;
+      }
+      .anim-up2 {
+        animation: fadeUp 0.7s 0.12s ease both;
+      }
+      .anim-up3 {
+        animation: fadeUp 0.7s 0.24s ease both;
+      }
+      .anim-up4 {
+        animation: fadeUp 0.7s 0.36s ease both;
+      }
+      .anim-r {
+        animation: fadeRight 0.7s 0.08s ease both;
+      }
+
+      /* ── رفع مشکل دکمه همبرگر در موبایل ── */
+      #mobHamburger {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 8px 10px;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #mobHamburger:hover {
+        background: rgba(79, 231, 235, 0.12);
+        border-color: var(--cyan);
+      }
+
+      /* ── استایل دکمه همبرگر ── */
+      .hamburger-icon {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        width: 22px;
+      }
+      .hamburger-icon span {
+        display: block;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+        transition: all 0.25s;
+      }
+      .hamburger-icon span:nth-child(2) {
+        width: 16px;
+        margin-right: auto;
+      }
+
+      /* ── تنظیمات مخصوص موبایل برای فونت‌ها ── */
+      @media (max-width: 480px) {
+        .mob-headline {
+          font-size: 28px !important;
+        }
+        .mob-doctor-name {
+          font-size: 18px !important;
+        }
+        .mob-doctor-desc {
+          font-size: 12px !important;
+        }
+        .mob-stat-number {
+          font-size: 15px !important;
+        }
+        .mob-stat-label {
+          font-size: 9px !important;
+        }
+        .mob-btn {
+          font-size: 13px !important;
+          padding-top: 12px !important;
+          padding-bottom: 12px !important;
+        }
+        .mob-service-text {
+          font-size: 10px !important;
+        }
+        .mob-service-icon {
+          width: 40px !important;
+          height: 40px !important;
+          font-size: 18px !important;
+        }
+      }
+
+      /* ═══════════════════════════════════════
+         خط مینیمال جداکننده
+         ═══════════════════════════════════════ */
+      .mob-divider {
+        height: 1px;
+        background: rgba(79, 231, 235, 0.25);
+        margin: 5rem 0 0rem;
+      }
+
+      /* ═══════════════════════════════════════
+         مودال سه‌بعدی موبایل (تمام صفحه)
+         ═══════════════════════════════════════ */
+      .service-modal-mobile {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(8, 10, 14, 0.95);
+        backdrop-filter: blur(30px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      .service-modal-mobile.active {
+        display: flex;
+        opacity: 1;
+      }
+      .service-modal-3d {
+        background: linear-gradient(145deg, rgba(20, 23, 28, 0.9), rgba(13, 15, 18, 0.95));
+        border: 1px solid rgba(79, 231, 235, 0.3);
+        border-radius: 24px;
+        padding: 2rem;
+        max-width: 500px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+        box-shadow: 0 20px 60px rgba(79, 231, 235, 0.2), 0 0 40px rgba(79, 231, 235, 0.1);
+        position: relative;
+      }
+      .service-modal-3d:hover {
+        transform: perspective(1000px) rotateY(5deg) rotateX(-5deg);
+        box-shadow: 0 30px 80px rgba(79, 231, 235, 0.3), 0 0 60px rgba(79, 231, 235, 0.15);
+      }
+      .service-modal-mobile.active .service-modal-3d {
+        animation: card3dIn 0.6s ease forwards;
+      }
+      @keyframes card3dIn {
+        from {
+          opacity: 0;
+          transform: perspective(1000px) rotateY(-15deg) rotateX(10deg) scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1);
+        }
+      }
+
+      /* ═══════════════════════════════════════
+         مودال دسکتاپ
+         ═══════════════════════════════════════ */
+      .service-modal-desktop {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(8, 10, 14, 0.9);
+        backdrop-filter: blur(20px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .service-modal-desktop.active {
+        display: flex;
+        opacity: 1;
+      }
+      .service-modal-desktop-content {
+        background: linear-gradient(145deg, rgba(20, 23, 28, 0.95), rgba(13, 15, 18, 0.98));
+        border: 1px solid rgba(79, 231, 235, 0.25);
+        border-radius: 24px;
+        padding: 2.5rem;
+        max-width: 600px;
+        width: 100%;
+        box-shadow: 0 20px 60px rgba(79, 231, 235, 0.15);
+        position: relative;
+      }
+
+      /* ═══════════════════════════════════════
+         کارت پزشک در موبایل
+         ═══════════════════════════════════════ */
+      .mobile-doctor-card {
+        background: linear-gradient(145deg, rgba(79, 231, 235, 0.08), rgba(52, 203, 216, 0.05));
+        border: 1px solid rgba(79, 231, 235, 0.25);
+        border-radius: 20px;
+        padding: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .mobile-doctor-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(79, 231, 235, 0.1) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      .mobile-doctor-card:hover::before {
+        opacity: 1;
+      }
+      .mobile-doctor-card:hover {
+        border-color: rgba(79, 231, 235, 0.5);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(79, 231, 235, 0.15);
+      }
+
+      /* ── کارت‌های خدمات موبایل قابل کلیک ── */
+      .mobile-service-card {
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+      .mobile-service-card:hover {
+        border-color: rgba(79, 231, 235, 0.4) !important;
+        transform: translateY(-2px);
+      }
+
+      /* ── اسکرول‌بار مخفی برای مودال ── */
+      .service-modal-3d::-webkit-scrollbar {
+        width: 4px;
+      }
+      .service-modal-3d::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .service-modal-3d::-webkit-scrollbar-thumb {
+        background: rgba(79, 231, 235, 0.3);
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="p-3 md:p-4 min-h-screen">
+      <div class="mx-auto max-w-[1640px]">
+        <!-- ════════════════════════════════════════
+      DESKTOP  (xl+)
+      ════════════════════════════════════════ -->
+        <section class="hidden xl:block hero-wrap glass glow-ring">
+          <div class="hero-bg"></div>
+          <div class="hero-bg-overlay-desktop"></div>
+
+          <!-- ── Navbar ── -->
+          <div
+            class="relative z-10 flex items-center justify-between px-7 py-5"
+          >
+            <!-- Logo: راست -->
+            <div class="flex items-center gap-3">
+              <div
+                class="w-11 h-11 rounded-full overflow-hidden flex-shrink-0"
+              >
+                <img
+                  src="./Vectorized.svg"
+                  alt="logo"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+
+            <!-- Nav: وسط -->
+            <nav class="flex items-center gap-7">
+              <a href="#" class="nav-link">آموزش</a>
+              <br>
+              <a href="#" class="nav-link">مشاوره</a>
+              <br>
+              <a href="#" class="nav-link">پزشک</a>
+              <br>
+              <a href="#" class="nav-link">برنامه‌ها</a>
+              <br>
+              <a href="#" class="nav-link">پشتیبانی</a>
+              <br>
+              <a href="#" class="nav-link flex items-center gap-1.5"
+                ><i class="fa-regular fa-calendar text-sm"></i>رزرو حضوری</a
+                
+              >
+            </nav>
+
+            <!-- Buttons: چپ -->
+            <div class="flex items-center gap-2.5">
+              <button class="btn-cyan px-5 py-2.5 text-sm">عضویت</button>
+              <button
+                class="btn-ghost px-4 py-2.5 text-sm flex items-center gap-2"
+              >
+                <i class="fa-regular fa-arrow-right-to-bracket text-xs"></i>ورود
+              </button>
+            </div>
+          </div>
+
+          <!-- ── Hero body ── -->
+          <div class="relative z-10 grid grid-cols-2 gap-5 px-8 pt-4 pb-8">
+            <div class="col-span-3 relative">
+              <!-- bio card -->
+              <div class="flex items-start gap-4 order-1 md:order-2">
+                <div class="w-1 h-20 bg-teal-400 rounded-full"></div>
+                <div>
+                  <h2 class="text-3xl md:text-4xl font-extrabold text-white">
+                    دکتر ستاره سالخورده
+                  </h2>
+                  <p
+                    class="text-slate-300 mt-2 text-sm md:text-base text-white leading-relaxed"
+                  >
+                    متخصص تغذیه و مربی ورزشی <br />
+                    <span class="text-slate-500 text-white"
+                      >| دکتری فیزیولوژی ورزشی</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- col 1-5 راست: هدلاین + CTA + آمار -->
+            <div class="col-span-5 pt-10 flex flex-col ml-[20px]">
+              <h1
+                class="anim-up text-[60px] leading-[1.1] font-black tracking-tight mt-12"
+              >
+                تناسب‌اندام حرفه‌ای<br />با
+                <span style="color: var(--cyan)">علـــــم</span> و
+                <span style="color: var(--cyan)">برنــــامه</span>
+              </h1>
+              <p class="anim-up2 mt-7 text-[19px] leading-[1.9] text-white/80">
+                برنامه‌های اختصاصی تغذیه و تمرین<br />همراه با پایش و پشتیبانی    
+              </p>
+              <div class="anim-up3 mt-4 flex items-center gap-3">
+                <a
+                  href="#"
+                  class="btn-cyan px-7 py-3.5 text-[15px] inline-flex items-center gap-2 "
+                >
+                  شروع برنامه <i class="fa-solid fa-chevron-left text-xs"></i>
+                </a>
+                <a
+                  href="#"
+                  class="btn-ghost px-7 py-3.5 text-[15px] inline-flex items-center gap-2"
+                >
+                  مشاهده برنامه‌ها
+                  <i class="fa-solid fa-chevron-left text-xs"></i>
+                </a>
+              </div>
+              <!-- Stats -->
+              <div
+                class="btn-ghost mt-2 inline-flex items-center"
+                style="gap: 16px; padding: 10px 45px; width: fit-content"
+              >
+                <div class="flex items-center gap-12">
+                  <div class="stat-pill">
+                 
+                    <i class="fa-regular fa-user"></i>
+                    <div>
+                      <div class="stat-num">۴.۹</div>
+                      <div class="stat-lbl">امتیاز</div>
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      width: 1px;
+                      height: 44px;
+                      background: rgba(255, 255, 255, 0.13);
+                    "
+                  ></div>
+                  <div class="stat-pill">
+                   
+                    <i class="fa-regular fa-star"></i>
+                    <div>
+                      <div class="stat-num">+۱۲۰۰</div>
+                      <div class="stat-lbl">مراجعه‌کننده</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+           <!-- ── اسکرول پیام ── -->
+<div class="col-span-12 mt-4">
+  <div class="scroll-message">
+    <div class="divider-line"></div>
+    <div class="flex items-center gap-2">
+      <button class="arrow-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+      </button>
+      <span>برای مشاهده خدمات بالا اسکرول کنید</span>
+      <button class="arrow-btn" onclick="document.getElementById('services-section').scrollIntoView({behavior: 'smooth'})">
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+      </button>
+    </div>
+    <div class="divider-line"></div>
+  </div>
+</div>
+
+<style>
+  .scroll-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    padding: 8px 0;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(79, 231, 235, 0.3), transparent);
+    max-width: 200px;
+  }
+  .scroll-message span {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    white-space: nowrap;
+    font-weight: 400;
+  }
+  .arrow-btn {
+    background: rgba(79, 231, 235, 0.08);
+    border: 1px solid rgba(79, 231, 235, 0.15);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4fe7eb;
+    cursor: pointer;
+    transition: all 0.25s;
+    flex-shrink: 0;
+  }
+  .arrow-btn:hover {
+    background: rgba(79, 231, 235, 0.2);
+    border-color: #4fe7eb;
+    box-shadow: 0 0 15px rgba(79, 231, 235, 0.15);
+  }
+</style>
+
+            <!-- ── Service cards row ── -->
+<div class="col-span-12 mt-10">
+  <div class="cards-scroll-row pt-8">
+
+    <!-- کارت پزشک -->
+    <div
+      class="card glass h-64 p-6 rounded-3xl flex flex-col items-center text-center hover:translate-y-[-5px] transition-all group cursor-pointer"
+      onclick="openServiceModal('doctor')"
+    >
+      <div class="text-teal-400 mb-4">
+        <svg
+          class="w-14 h-14 svc-icon text-3xl"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4.8 2.3A.3.3 0 105 2H4a2 2 0 00-2 2v5a6 6 0 006 6v0a6 6 0 006-6V4a2 2 0 00-2-2h-1a.2.2 0 10.3.3M9 15v3.5a3.5 3.5 0 007 0V16a2 2 0 014 0v1.5a6 6 0 01-12 0V16"
+          />
+          <circle cx="18" cy="9" r="2" />
+        </svg>
+      </div>
+
+      <h3 class="text-sm font-bold mb-2 mt-4">نظارت پزشک</h3>
+      <p class="hidden md:block text-[13px] text-slate-500 mb-4 leading-relaxed">
+        کل برنامه غذایی و تمرینی<br> تحت نظارت پزشک
+      </p>
+
+      <div class="w-full flex justify-end mt-auto">
+        <div
+          class="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center text-slate-500 group-hover:border-teal-500 group-hover:text-teal-400"
+        >
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- کارت برنامه تغذیه -->
+    <div
+      class="card glass h-64 p-6 rounded-3xl flex flex-col items-center text-center hover:translate-y-[-5px] transition-all group cursor-pointer"
+      onclick="openServiceModal('nutrition')"
+    >
+      <div class="text-teal-400 mb-4">
+        <svg
+          class="w-14 h-14 svc-icon text-3xl"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3 11h18M4 11a8 8 0 0116 0M5 11l1.5 6a2 2 0 002 1.5h7a2 2 0 002-1.5L19 11M12 3v2M9 5l1 2M15 5l-1 2"
+          />
+        </svg>
+      </div>
+
+      <h3 class="text-sm font-bold mb-2 mt-4">برنامه تغذیه</h3>
+      <p class="hidden md:block text-[14px] text-slate-500 mb-4">
+        برنامه‌های غذایی اختصاصی<br> براساس هدف
+      </p>
+
+      <div class="w-full flex justify-end mt-auto">
+        <div
+          class="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center text-slate-500 group-hover:border-teal-500 group-hover:text-teal-400"
+        >
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- کارت برنامه تمرینی -->
+    <div
+      class="card glass h-64 p-6 rounded-3xl flex flex-col items-center text-center hover:translate-y-[-5px] transition-all group cursor-pointer"
+      onclick="openServiceModal('training')"
+    >
+      <div class="text-teal-400 mb-4">
+        <svg
+          class="w-14 h-14 svc-icon text-3xl"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 9v6M2 11v2M20 9v6M22 11v2M6 8v8M18 8v8M6 12h12"
+          />
+        </svg>
+      </div>
+
+      <h3 class="text-sm font-bold mb-2 mt-4">برنامه تمرینی</h3>
+      <p class="hidden md:block text-[14px] text-slate-500 mb-4">
+        برنامه‌های تمرینی هدفمند<br> متناسب با شما
+      </p>
+
+      <div class="w-full flex justify-end mt-auto">
+        <div
+          class="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center text-slate-500 group-hover:border-teal-500 group-hover:text-teal-400"
+        >
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- کارت فیتنس و قهرمانی -->
+    <div
+      class="card glass h-64 p-6 rounded-3xl flex flex-col items-center text-center hover:translate-y-[-5px] transition-all group cursor-pointer"
+      onclick="openServiceModal('fitness')"
+    >
+      <div class="text-teal-400 mb-4">
+        <svg
+          class="w-14 h-14 svc-icon text-3xl"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8 4h8v4a4 4 0 11-8 0V4zM8 6H5v2a3 3 0 003 3M16 6h3v2a3 3 0 01-3 3M12 14v3m-3 4h6m-5 0l.5-2.5h3L14 21"
+          />
+        </svg>
+      </div>
+
+      <h3 class="text-sm font-bold mb-2 mt-4">فیتنس و قهرمانی</h3>
+      <p class="hidden md:block text-[14px] text-slate-500 mb-4">
+        مسیر حرفه‌ای برای ارتقا <br>عملکرد و مسابقه
+      </p>
+
+      <div class="w-full flex justify-end mt-auto">
+        <div
+          class="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center text-slate-500 group-hover:border-teal-500 group-hover:text-teal-400"
+        >
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- کارت اصلاحی -->
+    <div
+      class="card glass h-64 p-6 rounded-3xl flex flex-col items-center text-center hover:translate-y-[-5px] transition-all group cursor-pointer"
+      onclick="openServiceModal('corrective')"
+    >
+      <div class="text-teal-400 mb-4">
+        <svg
+          class="w-14 h-14 svc-icon text-3xl"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 3v18M9 5h6M8.5 8.5h7M8 12h8M8.5 15.5h7M9 19h6"
+          />
+        </svg>
+      </div>
+
+      <h3 class="text-sm font-bold mb-2 mt-4">اصلاحی</h3>
+      <p class="hidden md:block text-[14px] text-slate-500 mb-4">
+        برنامه‌های اصلاحی و حرکتی<br> برای بهبود
+      </p>
+
+      <div class="w-full flex justify-end mt-auto">
+        <div
+          class="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center text-slate-500 group-hover:border-teal-500 group-hover:text-teal-400"
+        >
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- کارت پشتیبانی آنلاین -->
+    <div
+      class="card glass h-64 p-6 rounded-3xl flex flex-col items-center text-center hover:translate-y-[-5px] transition-all group cursor-pointer"
+      onclick="openServiceModal('support')"
+    >
+      <div class="text-teal-400 mb-4">
+        <svg
+          class="w-14 h-14 svc-icon text-3xl"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 13v-1a8 8 0 0116 0v1M4 13a2 2 0 012 2v2a2 2 0 01-4 0v-2a2 2 0 012-2zM20 13a2 2 0 00-2 2v2a2 2 0 004 0v-2a2 2 0 00-2-2zM18 19a4 4 0 01-4 3h-2"
+          />
+        </svg>
+      </div>
+
+      <h3 class="text-sm font-bold mb-2 mt-4">پشتیبانی آنلاین</h3>
+      <p class="hidden md:block text-[14px] text-slate-500 mb-4">
+        پشتیبانی و پاسخگویی <br> تخصصی در کنار شما
+      </p>
+
+      <div class="w-full flex justify-end mt-auto">
+        <div
+          class="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center text-slate-500 group-hover:border-teal-500 group-hover:text-teal-400"
+        >
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- کارت رزرو وقت حضوری -->
+    <div
+      class="card glass h-64 p-6 rounded-3xl flex flex-col items-center text-center hover:translate-y-[-5px] transition-all group cursor-pointer"
+      onclick="openServiceModal('reservation')"
+    >
+      <div class="text-teal-400 mb-4">
+        <svg
+          class="w-14 h-14 svc-icon text-3xl"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 6a2 2 0 012-2h12a2 2 0 012 2v13a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM4 9h16M8 3v3M16 3v3M9 14l2 2 4-4"
+          />
+        </svg>
+      </div>
+
+      <h3 class="text-md font-bold mb-2 mt-4">رزرو وقت حضوری</h3>
+      <p class="hidden md:block text-[14px] text-slate-500 mb-4">
+        رزرو جلسه حضوری با<br> هماهنگی سریع و آسان
+      </p>
+
+      <div class="w-full flex justify-end mt-auto">
+        <div
+          class="w-8 h-8 rounded-full border border-slate-700 flex items-center justify-center text-slate-500 group-hover:border-teal-500 group-hover:text-teal-400"
+        >
+          >
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+                </div>
+          <!-- /hero body -->
+
+          <!-- ════════════════════════════════════════
+               فوتر دسکتاپ
+               ════════════════════════════════════════ -->
+          <footer class="site-footer px-10 py-12">
+            <div class="grid grid-cols-12 gap-8">
+
+              <!-- ستون ۱: لوگو و توضیح -->
+              <div class="col-span-4">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+                    <img src="./Vectorized.svg" alt="logo" class="w-full h-full object-cover" />
+                  </div>
+                  <h3 class="text-lg font-extrabold text-white">دکتر ستاره سالخورده  </h3>
+                </div>
+                <p class="text-sm text-white/55 leading-7 max-w-sm">
+                  برنامه‌های اختصاصی تغذیه و تمرین زیر نظر متخصصین مجرب، همراه با پایش مداوم و پشتیبانی حرفه‌ای برای رسیدن به بهترین نسخه خودتان.
+                </p>
+                <div class="flex items-center gap-2.5 mt-5">
+                  <a href="#" class="social-icon" aria-label="اینستاگرام">
+                    <i class="fa-brands fa-instagram text-sm"></i>
+                  </a>
+                  <a href="#" class="social-icon" aria-label="تلگرام">
+                    <i class="fa-brands fa-telegram text-sm"></i>
+                  </a>
+                  <a href="#" class="social-icon" aria-label="واتساپ">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                  </a>
+                  <a href="#" class="social-icon" aria-label="یوتیوب">
+                    <i class="fa-brands fa-youtube text-sm"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- ستون ۲: دسترسی سریع -->
+              <div class="col-span-2">
+                <h4 class="footer-heading">دسترسی سریع</h4>
+                <div class="footer-links">
+                  <a href="#">صفحه اصلی</a>
+                  <a href="#">درباره ما</a>
+                  <a href="#">برنامه‌ها</a>
+                  <a href="#">وبلاگ</a>
+                  <a href="#">تماس با ما</a>
+                </div>
+              </div>
+
+              <!-- ستون ۳: خدمات -->
+              <div class="col-span-3">
+                <h4 class="footer-heading">خدمات ما</h4>
+                <div class="footer-links">
+                  <a href="#">برنامه تغذیه اختصاصی</a>
+                  <a href="#">برنامه تمرینی هدفمند</a>
+                  <a href="#">مشاوره آنلاین</a>
+                  <a href="#">فیتنس و قهرمانی</a>
+                  <a href="#">رزرو وقت حضوری</a>
+                </div>
+              </div>
+
+              <!-- ستون ۴: تماس -->
+              <div class="col-span-3">
+                <h4 class="footer-heading">ارتباط با ما</h4>
+                <div class="footer-links">
+                  <a href="tel:+989123456789" class="flex items-center gap-2">
+                    <i class="fa-solid fa-phone text-xs text-teal-400"></i>
+                    09106211980
+                  </a>
+                  <a href="mailto:info@45degree.club" class="flex items-center gap-2">
+                    <i class="fa-solid fa-envelope text-xs text-teal-400"></i>
+                    info@setare.
+                  </a>
+                  <a href="#" class="flex items-center gap-2">
+                    <i class="fa-solid fa-location-dot text-xs text-teal-400"></i>
+      قم ،الغدیر 
+                  </a>
+                  <a href="#" class="flex items-center gap-2">
+                    <i class="fa-regular fa-clock text-xs text-teal-400"></i>
+                    شنبه تا پنج‌شنبه | ۹ تا ۲۲
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- خط جداکننده و کپی‌رایت -->
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+              <div>
+                ©  تمامی حقوق برای <span class="dev-name">  دکتر ستاره سالخورده</span> محفوظ است.
+              </div>
+              <div class="flex items-center gap-2">
+                طراحی و توسعه توسط
+                <span class="dev-name">Setayesh Sadeghian</span>
+              </div>
+            </div>
+          </footer>
+
+        </section>
+
+        <!-- ════════════════════════════════════════
+      MOBILE  (< xl)
+      ════════════════════════════════════════ -->
+        <div
+          class="xl:hidden hero-wrap glass glow-ring"
+          style="min-height: 100svh"
+        >
+          <div class="hero-bg"></div>
+          <div class="hero-bg-overlay-mobile"></div>
+
+          <!-- Mobile fullscreen menu -->
+          <div id="mobMenu" class="mob-menu">
+            <div class="mob-menu-close" id="mobClose">
+              <i class="fa-regular fa-xmark text-xl text-white"></i>
+            </div>
+            <nav class="flex flex-col gap-5 mt-12">
+              <a href="#" class="mob-nav-link">آموزش</a>
+              <a href="#" class="mob-nav-link">مشاوره</a>
+              <a href="#" class="mob-nav-link">پزشک</a>
+              <a href="#" class="mob-nav-link">برنامه‌ها</a>
+              <a href="#" class="mob-nav-link">پشتیبانی</a>
+              <a href="#" class="mob-nav-link">رزرو حضوری</a>
+            </nav>
+            <div class="mt-auto flex flex-col gap-3 pb-6">
+              <button
+                class="btn-ghost py-3 text-base rounded-2xl"
+                onclick="
+                  document.getElementById('mobMenu').classList.remove('open')
+                "
+              >
+                ورود
+              </button>
+              <button class="btn-cyan py-3 text-base rounded-2xl font-black">
+                عضویت ویژه
+              </button>
+            </div>
+          </div>
+
+          <!-- Mobile content -->
+          <div
+            class="relative z-10 flex flex-col px-4 pt-3 pb-6 gap-4"
+            style="min-height: 100svh"
+          >
+            <!-- ── Mobile navbar ── -->
+            <div class="flex items-center justify-between">
+              <!-- logo -->
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0"
+                >
+                  <img
+                    src="./Vectorized.svg"
+                    alt="logo"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <!-- right side: hamburger + عضویت + ورود -->
+              <div class="flex items-center gap-1.5">
+             
+                <button class="btn-cyan px-3 py-1.5 text-[10px] rounded-xl">
+                  عضویت
+                </button>
+                <button
+                  class="btn-ghost px-2.5 py-1.5 rounded-xl flex items-center gap-1 text-[10px]"
+                >
+                  <i
+                    class="fa-regular fa-arrow-right-to-bracket text-[10px]"
+                  ></i
+                  >ورود
+                </button>
+                   <button id="mobHamburger" class="btn-ghost px-2.5 py-1.5 rounded-xl flex items-center gap-1">
+                  <div class="hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- ── Bio card ── -->
+            <div class="mt-6 flex gap-3 items-start">
+              <div class="flex items-start gap-3">
+                <div class="w-1 h-14 bg-teal-400 rounded-full"></div>
+                <div>
+                  <h2 class="mob-doctor-name text-xl font-extrabold text-white">
+                    دکتر ستاره سالخورده
+                  </h2>
+                  <p
+                    class="mob-doctor-desc text-xs text-slate-200 mt-1 leading-relaxed"
+                  >
+                    متخصص تغذیه و مربی ورزشی <br />
+                    <span class="text-slate-400">| دکتری فیزیولوژی ورزشی</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <br />
+            <br />
+            <br />
+
+            <!-- ── Headline + CTA ── -->
+            <div class="mt-10">
+              <h1
+                class="mob-headline text-2xl font-black leading-[1.2] tracking-tight text-center"
+              >
+                <span class="block">تناسب‌اندام حرفه‌ای</span>
+                <span class="block">
+                  با <span style="color: var(--cyan)">عـــــلم</span> و
+                  <span style="color: var(--cyan)">برنـــامه</span>
+                </span>
+              </h1>
+              <p class="text-center mt-2 text-xs text-white/85 leading-5">
+                برنامه‌های اختصاصی تغذیه و تمرین <br />همراه با پایش وپشتیبان 
+              </p>
+              <div class="mt-4 space-y-2.5">
+                <button
+                  class="btn-cyan w-full text-[#04181c] font-bold py-3 rounded-2xl text-sm mob-btn"
+                >
+                  شروع برنامه
+                </button>
+                <button
+                  class="glass w-full py-3 rounded-2xl text-xs flex items-center justify-center gap-2 mob-btn"
+                >
+                  مشاهده برنامه‌ها
+                 
+                 
+                </button>
+              </div>
+            </div>
+
+            <!-- ── Stats bar ── -->
+            <div
+              class=" btn-ghost glass rounded-[20px] px-3 py-2.5 flex items-center justify-center gap-12"
+            >
+              <div class="stat-pill">
+              
+                <i
+                  class="fa-regular fa-user"
+                  style="color: var(--cyan); font-size: 13px"
+                ></i>
+                <div>
+                  <div class="mob-stat-number font-black text-base">+۱۲۰۰</div>
+                  <div class="mob-stat-label text-[9px] text-white/55">
+                    مراجعه‌کننده
+                  </div>
+                </div>
+              </div>
+              <div
+                style="
+                  width: 1px;
+                  height: 30px;
+                  background: rgba(255, 255, 255, 0.13);
+                "
+              ></div>
+              <div class="stat-pill">
+               
+                <i
+                  class="fa-regular fa-star"
+                  style="color: var(--cyan); font-size: 13px"
+                ></i>
+                <div>
+                  <div class="mob-stat-number font-black text-base">۴.۹</div>
+                  <div class="mob-stat-label text-[9px] text-white/55">
+                    امتیاز
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          
+            <!-- ── Mobile service grid ── -->
+            <div>
+              <div class="grid grid-cols-3 gap-2">
+                <div
+                  class="card glass-soft rounded-2xl py-3 flex flex-col items-center gap-1 mobile-service-card"
+                  onclick="openServiceModal('nutrition')"
+                >
+                  <svg
+                    class="mob-service-icon w-9 h-9 svc-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M3 11h18M4 11a8 8 0 0116 0M5 11l1.5 6a2 2 0 002 1.5h7a2 2 0 002-1.5L19 11M12 3v2M9 5l1 2M15 5l-1 2"
+                    />
+                  </svg>
+                  <span class="mob-service-text text-[10px] text-gray-200"
+                    >برنامه تغذیه</span
+                  >
+                </div>
+
+                <div
+                  class="card glass-soft rounded-2xl py-3 flex flex-col items-center gap-1 mobile-service-card"
+                  onclick="openServiceModal('training')"
+                >
+                  <svg
+                    class="mob-service-icon w-9 h-9 svc-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4 9v6M2 11v2M20 9v6M22 11v2M6 8v8M18 8v8M6 12h12"
+                    />
+                  </svg>
+                  <span class="mob-service-text text-[10px] text-gray-200"
+                    >برنامه تمرینی</span
+                  >
+                </div>
+
+                <div
+                  class="card glass-soft rounded-2xl py-3 flex flex-col items-center gap-1 mobile-service-card"
+                  onclick="openServiceModal('fitness')"
+                >
+                  <svg
+                    class="mob-service-icon w-9 h-9 svc-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M8 4h8v4a4 4 0 11-8 0V4zM8 6H5v2a3 3 0 003 3M16 6h3v2a3 3 0 01-3 3M12 14v3m-3 4h6m-5 0l.5-2.5h3L14 21"
+                    />
+                  </svg>
+                  <span class="mob-service-text text-[10px] text-gray-200"
+                    >فیتنس و قهرمانی</span
+                  >
+                </div>
+
+                <div
+                  class="card glass-soft rounded-2xl py-3 flex flex-col items-center gap-1 mobile-service-card"
+                  onclick="openServiceModal('corrective')"
+                >
+                  <svg
+                    class="mob-service-icon w-9 h-9 svc-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 3v18M9 5h6M8.5 8.5h7M8 12h8M8.5 15.5h7M9 19h6"
+                    />
+                  </svg>
+                  <span class="mob-service-text text-[10px] text-gray-200"
+                    >اصلاحی</span
+                  >
+                </div>
+
+                <div
+                  class="card glass-soft rounded-2xl py-3 flex flex-col items-center gap-1 mobile-service-card"
+                  onclick="openServiceModal('support')"
+                >
+                  <svg
+                    class="mob-service-icon w-9 h-9 svc-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4 13v-1a8 8 0 0116 0v1M4 13a2 2 0 012 2v2a2 2 0 01-4 0v-2a2 2 0 012-2zM20 13a2 2 0 00-2 2v2a2 2 0 004 0v-2a2 2 0 00-2-2zM18 19a4 4 0 01-4 3h-2"
+                    />
+                  </svg>
+                  <span class="mob-service-text text-[10px] text-gray-200"
+                    >پشتیبانی آنلاین</span
+                  >
+                </div>
+
+                <div
+                  class="card glass-soft rounded-2xl py-3 flex flex-col items-center gap-1 mobile-service-card"
+                  onclick="openServiceModal('reservation')"
+                >
+                  <svg
+                    class="mob-service-icon w-9 h-9 svc-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4 6a2 2 0 012-2h12a2 2 0 012 2v13a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM4 9h16M8 3v3M16 3v3M9 14l2 2 4-4"
+                    />
+                  </svg>
+                  <span class="mob-service-text text-[10px] text-gray-200"
+                    >رزرو وقت حضوری</span
+                  >
+                </div>
+              </div>
+              <br>
+                <!-- ── کارت پزشک موبایل ── -->
+            <div class="mobile-doctor-card" onclick="openServiceModal('doctor')">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-teal-400/20 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.8 2.3A.3.3 0 105 2H4a2 2 0 00-2 2v5a6 6 0 006 6v0a6 6 0 006-6V4a2 2 0 00-2-2h-1a.2.2 0 10.3.3M9 15v3.5a3.5 3.5 0 007 0V16a2 2 0 014 0v1.5a6 6 0 01-12 0V16" />
+                    <circle cx="18" cy="9" r="2" />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-sm font-bold text-white">نظارت پزشک</h3>
+                  <p class="text-[11px] text-slate-400 mt-0.5">برای مشاهده جزئیات کلیک کنید</p>
+                </div>
+                <div class="w-8 h-8 rounded-full border border-teal-400/30 flex items-center justify-center text-teal-400">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+
+              <!-- فلش پایین -->
+              <div class="mt-4 flex justify-center">
+                <svg
+                  class="w-5 h-5 text-gray-400 animate-bounce"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </div>
+            </div>
+   <div class="mob-divider"></div>
+            <!-- ════════════════════════════════════════
+                 فوتر موبایل
+                 ════════════════════════════════════════ -->
+            <footer class="px-5 py-8 rounded-b-[26px]">
+              <!-- لوگو و توضیح -->
+               <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+                  <img src="./Vectorized.svg" alt="logo" class="w-full h-full object-cover" />
+                </div>
+                <h3 class="text-base font-extrabold text-white">دکتر ستاره سالخورده  </h3>
+              </div>
+              <p class="text-[12px] text-white/55 leading-6 mb-5">
+                برنامه‌های اختصاصی تغذیه و تمرین زیر نظر متخصصین مجرب.
+              </p>
+
+              <!-- شبکه‌های اجتماعی -->
+              <div class="flex items-center gap-2 mb-6">
+                <a href="#" class="social-icon" style="width:36px;height:36px;" aria-label="اینستاگرام">
+                  <i class="fa-brands fa-instagram text-xs"></i>
+                </a>
+                <a href="#" class="social-icon" style="width:36px;height:36px;" aria-label="تلگرام">
+                  <i class="fa-brands fa-telegram text-xs"></i>
+                </a>
+                <a href="#" class="social-icon" style="width:36px;height:36px;" aria-label="واتساپ">
+                  <i class="fa-brands fa-whatsapp text-xs"></i>
+                </a>
+                <a href="#" class="social-icon" style="width:36px;height:36px;" aria-label="یوتیوب">
+                  <i class="fa-brands fa-youtube text-xs"></i>
+                </a>
+              </div>
+
+              <!-- لینک‌های سریع -->
+              <div class="grid grid-cols-2 gap-5 mb-5">
+                <div>
+                  <h4 class="footer-heading" style="font-size:13px; margin-bottom:12px;">دسترسی سریع</h4>
+                  <div class="footer-links" style="gap:8px;">
+                    <a href="#" style="font-size:12px;">صفحه اصلی</a>
+                    <a href="#" style="font-size:12px;">برنامه‌ها</a>
+                    <a href="#" style="font-size:12px;">درباره ما</a>
+                    <a href="#" style="font-size:12px;">تماس با ما</a>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="footer-heading" style="font-size:13px; margin-bottom:12px;">خدمات</h4>
+                  <div class="footer-links" style="gap:8px;">
+                    <a href="#" style="font-size:12px;">تغذیه</a>
+                    <a href="#" style="font-size:12px;">تمرین</a>
+                    <a href="#" style="font-size:12px;">مشاوره</a>
+                    <a href="#" style="font-size:12px;">رزرو</a>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                  <h4 class="footer-heading">ارتباط با ما</h4>
+                  <div class="footer-links">
+                    <a href="tel:+989123456789" class="flex items-center gap-2">
+                      <i class="fa-solid fa-phone text-xs text-teal-400"></i>
+                     09106211980
+                    </a>
+                    <a href="mailto:info@45degree.club" class="flex items-center gap-2">
+                      <i class="fa-solid fa-envelope text-xs text-teal-400"></i>
+                      info@setare.
+                    </a>
+                    <a href="#" class="flex items-center gap-2">
+                      <i class="fa-solid fa-location-dot text-xs text-teal-400"></i>
+                       قم ،الغدیر 
+                    </a>
+                    <a href="#" class="flex items-center gap-2">
+                      <i class="fa-regular fa-clock text-xs text-teal-400"></i>
+                      شنبه تا پنج‌شنبه | ۹ تا ۲۲
+                    </a>
+                  </div>
+              <!-- خط جداکننده و کپی‌رایت -->
+              <div class="footer-divider" style="margin: 20px 0 14px;"></div>
+              <div class="footer-bottom" style="flex-direction:column; align-items:center; text-align:center; gap:6px; font-size:11px;">
+                <div>©  تمامی حقوق برای <span class="dev-name">دکتر ستاره سالخورده  </span> محفوظ است.</div>
+                <div>
+                  طراحی توسط <span class="dev-name">Setayesh Sadeghian</span>
+                </div>
+              </div>
+            </footer>
+
+          </div>
+        </div>
+      </div>
+      <!-- /max-w -->
+    </main>
+
+    <!-- ════════════════════════════════════════
+         مودال موبایل (تمام صفحه سه‌بعدی)
+         ════════════════════════════════════════ -->
+    <div id="serviceModalMobile" class="service-modal-mobile">
+      <div class="service-modal-3d">
+        <!-- دکمه بستن -->
+       
+
+        <div class="text-center pt-4" id="modalMobileContent">
+          <!-- محتوای پویا اینجا قرار می‌گیرد -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         مودال دسکتاپ
+         ════════════════════════════════════════ -->
+    <div id="serviceModalDesktop" class="service-modal-desktop">
+      <div class="service-modal-desktop-content">
+        <!-- دکمه بستن -->
+     
+
+        <div id="modalDesktopContent">
+          <!-- محتوای پویا اینجا قرار می‌گیرد -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ── داده‌های خدمات ──
+      const servicesData = {
+        doctor: {
+          title: 'نظارت پزشک',
+          description: 'تمامی برنامه‌های غذایی و تمرینی شما تحت نظارت مستقیم پزشک متخصص طراحی و پایش می‌شود. ما تضمین می‌کنیم که مسیر تناسب‌اندام شما با بالاترین استانداردهای علمی و پزشکی همراه باشد.',
+          features: [
+            { icon: 'fa-stethoscope', label: 'مشاوره پزشکی' },
+            { icon: 'fa-chart-line', label: 'پایش مداوم' },
+            { icon: 'fa-shield-halved', label: 'ایمنی تضمینی' },
+            { icon: 'fa-user-doctor', label: 'پزشک متخصص' }
+          ]
+        },
+        nutrition: {
+          title: 'برنامه تغذیه',
+          description: 'برنامه‌های غذایی کاملاً اختصاصی بر اساس اهداف شما (کاهش وزن، افزایش حجم، یا سلامتی عمومی) طراحی می‌شود. با محاسبه دقیق کالری و درشت‌مغذی‌ها، مسیر رسیدن به بدنی ایده‌آل هموار می‌شود.',
+          features: [
+            { icon: 'fa-apple-whole', label: 'محاسبه کالری' },
+            { icon: 'fa-utensils', label: 'منوی هفتگی' },
+            { icon: 'fa-scale-balanced', label: 'تنظیم وزن' },
+            { icon: 'fa-leaf', label: 'تغذیه سالم' }
+          ]
+        },
+        training: {
+          title: 'برنامه تمرینی',
+          description: 'برنامه‌های تمرینی هدفمند و علمی متناسب با سطح آمادگی جسمانی، تجهیزات در دسترس و اهداف شما طراحی می‌شود. از تمرینات مبتدی تا حرفه‌ای، همه چیز برای پیشرفت شما آماده است.',
+          features: [
+            { icon: 'fa-dumbbell', label: 'تمرین قدرتی' },
+            { icon: 'fa-person-running', label: 'هوازی' },
+            { icon: 'fa-video', label: 'ویدیو آموزشی' },
+            { icon: 'fa-calendar-check', label: 'برنامه هفتگی' }
+          ]
+        },
+        fitness: {
+          title: 'فیتنس و قهرمانی',
+          description: 'مسیر حرفه‌ای برای کسانی که به دنبال مسابقات فیتنس، بدنسازی و قهرمانی هستند. با برنامه‌های تخصصی دوره آماده‌سازی، پوزینگ، و رژیم مسابقه، شما را برای صحنه رقابت آماده می‌کنیم.',
+          features: [
+            { icon: 'fa-trophy', label: 'آماده‌سازی مسابقه' },
+            { icon: 'fa-medal', label: 'مربی قهرمان' },
+            { icon: 'fa-fire', label: 'دوره کات' },
+            { icon: 'fa-bullseye', label: 'هدف‌گذاری' }
+          ]
+        },
+        corrective: {
+          title: 'برنامه اصلاحی',
+          description: 'برنامه‌های اصلاحی و حرکتی برای بهبود ناهنجاری‌های اسکلتی-عضلانی، کاهش دردهای مزمن و بهبود عملکرد حرکتی. با ارزیابی دقیق وضعیت بدنی، حرکات اصلاحی مناسب تجویز می‌شود.',
+          features: [
+            { icon: 'fa-bone', label: 'اصلاح ساختار' },
+            { icon: 'fa-hand-holding-medical', label: 'کاهش درد' },
+            { icon: 'fa-person-walking', label: 'بهبود حرکت' },
+            { icon: 'fa-check-double', label: 'ارزیابی دقیق' }
+          ]
+        },
+        support: {
+          title: 'پشتیبانی آنلاین',
+          description: 'تیم پشتیبانی ما ۷ روز هفته آماده پاسخگویی به سوالات شماست. از مشاوره فوری تا راهنمایی در مورد برنامه‌ها، همیشه در کنار شما هستیم تا هیچ سؤالی بی‌پاسخ نماند.',
+          features: [
+            { icon: 'fa-headset', label: 'پاسخگویی ۲۴/۷' },
+            { icon: 'fa-comments', label: 'تماس' },
+            { icon: 'fa-envelope-circle-check', label: 'پشتیبانی ایمیل' },
+            { icon: 'fa-circle-question', label: 'راهنمایی تخصصی' }
+          ]
+        },
+        reservation: {
+          title: 'رزرو وقت حضوری',
+          description: 'جلسات حضوری با دکتر ستاره سالخورده برای ارزیابی دقیق، تنظیم برنامه و مشاوره تخصصی. با رزرو آنلاین، زمان مناسب خود را انتخاب کنید و در کلینیک ما منتظر شما هستیم.',
+          features: [
+            { icon: 'fa-calendar-days', label: 'رزرو آنلاین' },
+            { icon: 'fa-location-dot', label: 'موقعیت کلینیک' },
+            { icon: 'fa-clock', label: 'زمان منعطف' },
+            { icon: 'fa-user-check', label: 'مشاوره حضوری' }
+          ]
+        }
+      };
+
+      // ── تشخیص موبایل یا دسکتاپ ──
+      function isMobile() {
+        return window.innerWidth < 1280;
+      }
+
+      // ── باز کردن مودال ──
+      function openServiceModal(serviceKey) {
+        const data = servicesData[serviceKey];
+        if (!data) return;
+
+        if (isMobile()) {
+          // مودال موبایل
+          const content = document.getElementById('modalMobileContent');
+          content.innerHTML = `
+            <div class="w-20 h-20 mx-auto rounded-full bg-teal-400/20 border border-teal-400/40 flex items-center justify-center mb-4">
+              <i class="fa-solid ${data.features[0].icon} text-3xl text-teal-400"></i>
+            </div>
+            <h2 class="text-2xl font-black text-white mb-2">${data.title}</h2>
+            <p class="text-sm text-slate-300 leading-7 mb-6">${data.description}</p>
+            <div class="grid grid-cols-2 gap-3 mb-6">
+              ${data.features.map(f => `
+                <div class="bg-white/5 rounded-xl p-3 border border-white/10">
+                  <div class="text-teal-400 text-lg mb-1">
+                    <i class="fa-solid ${f.icon}"></i>
+                  </div>
+                  <div class="text-xs text-white font-bold">${f.label}</div>
+                </div>
+              `).join('')}
+            </div>
+            <div class="flex flex-col gap-3">
+              <button class="btn-cyan w-full py-3.5 text-sm font-bold rounded-2xl">
+                ورود به برنامه
+              </button>
+              <button onclick="closeServiceModal()" class="btn-ghost w-full py-3 text-sm rounded-2xl">
+                بستن
+              </button>
+            </div>
+          `;
+          const modal = document.getElementById('serviceModalMobile');
+          modal.classList.add('active');
+        } else {
+          // مودال دسکتاپ
+          const content = document.getElementById('modalDesktopContent');
+          content.innerHTML = `
+            <div class="flex items-start gap-5">
+              <div class="w-16 h-16 rounded-2xl bg-teal-400/20 border border-teal-400/40 flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid ${data.features[0].icon} text-2xl text-teal-400"></i>
+              </div>
+              <div class="flex-1">
+                <h2 class="text-2xl font-black text-white mb-3">${data.title}</h2>
+                <p class="text-sm text-slate-300 leading-7 mb-5">${data.description}</p>
+                <div class="grid grid-cols-4 gap-3 mb-6">
+                  ${data.features.map(f => `
+                    <div class="bg-white/5 rounded-xl p-3 border border-white/10 text-center">
+                      <div class="text-teal-400 text-xl mb-2">
+                        <i class="fa-solid ${f.icon}"></i>
+                      </div>
+                      <div class="text-[11px] text-white font-bold">${f.label}</div>
+                    </div>
+                  `).join('')}
+                </div>
+                <div class="flex items-center gap-3">
+                  <button class="btn-cyan px-6 py-3 text-sm font-bold rounded-xl flex-1">
+                    ورود به برنامه
+                  </button>
+                  <button onclick="closeServiceModal()" class="btn-ghost px-6 py-3 text-sm rounded-xl">
+                    بستن
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+          const modal = document.getElementById('serviceModalDesktop');
+          modal.classList.add('active');
+        }
+        document.body.style.overflow = 'hidden';
+      }
+
+      // ── بستن مودال ──
+      function closeServiceModal() {
+        document.getElementById('serviceModalMobile').classList.remove('active');
+        document.getElementById('serviceModalDesktop').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      // ── بستن با کلیک روی پس‌زمینه ──
+      document.getElementById('serviceModalMobile').addEventListener('click', function(e) {
+        if (e.target === this) closeServiceModal();
+      });
+      document.getElementById('serviceModalDesktop').addEventListener('click', function(e) {
+        if (e.target === this) closeServiceModal();
+      });
+
+      // ── Mobile menu ──
+      const hamburger = document.getElementById("mobHamburger");
+      const menu = document.getElementById("mobMenu");
+      const close = document.getElementById("mobClose");
+      if (hamburger && menu && close) {
+        hamburger.addEventListener("click", () => menu.classList.add("open"));
+        close.addEventListener("click", () => menu.classList.remove("open"));
+        menu
+          .querySelectorAll("a")
+          .forEach((a) =>
+            a.addEventListener("click", () => menu.classList.remove("open")),
+          );
+      }
+    </script>
+  </body>
+</html>
